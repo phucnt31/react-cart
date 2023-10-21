@@ -36,5 +36,12 @@ export const reducer = (state, action) => {
     newCart.set(newId, decreaseCart);
     return { ...state, cart: newCart };
   }
+  if (action.type === LOADING) {
+    return { ...state, isLoading: true };
+  }
+  if (action.type === DISPLAY_ITEMS) {
+    const newCart = new Map(action.payload.data.map((item) => [item.id, item]));
+    return { ...state, cart: newCart, isLoading: false };
+  }
   throw new Error(`Action ${action.type} is not being handled`);
 };
