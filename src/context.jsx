@@ -8,11 +8,12 @@ import {
   REMOVE_ITEM,
 } from "./action";
 import { reducer } from "./reducer";
+import cartItems from "./data";
 
 const AppContext = createContext();
 
 const defaultState = {
-  cart: new Map(),
+  cart: new Map(cartItems.map((item) => [item.id, item])),
   isLoading: false,
 };
 
