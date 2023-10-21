@@ -20,8 +20,17 @@ const defaultState = {
 export const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, defaultState);
 
+  const clearCart = () => {
+    dispatch({ type: CLEAR_CART });
+  };
+  const removeItem = (id) => {
+    dispatch({ type: REMOVE_ITEM, payload: { id } });
+  };
+
   return (
-    <AppContext.Provider value={{ ...state }}>{children}</AppContext.Provider>
+    <AppContext.Provider value={{ ...state, clearCart, removeItem }}>
+      {children}
+    </AppContext.Provider>
   );
 };
 
